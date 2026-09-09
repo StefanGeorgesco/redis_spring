@@ -17,8 +17,8 @@ public class FibController {
         this.service = service;
     }
 
-    @GetMapping("{n}")
-    public Mono<Integer> getFib(@PathVariable int n) {
-        return Mono.fromSupplier(() -> service.getFib(n));
+    @GetMapping("{n}/{name}")
+    public Mono<Integer> getFib(@PathVariable int n, @PathVariable String name) {
+        return Mono.fromSupplier(() -> service.getFib(n, name));
     }
 }
