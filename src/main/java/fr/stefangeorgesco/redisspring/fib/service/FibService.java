@@ -10,9 +10,9 @@ public class FibService {
 
     private static final Logger log = LoggerFactory.getLogger(FibService.class);
 
-    @Cacheable("math:fib")
-    public int getFib(int n) {
-        log.info("Calculating Fibonacci number for n={}", n);
+    @Cacheable(value="math:fib", key = "#n")
+    public int getFib(int n, String name) {
+        log.info("Calculating Fibonacci number for n={}, name={}", n, name);
         return fib(n);
     }
 
