@@ -5,3 +5,7 @@ spring:
     redis:
       host: localhost
       port: 6379
+
+city:
+  api:
+    base-url: http://localhost:3030/open-city-api
