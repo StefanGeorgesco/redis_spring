@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +23,12 @@ public class FibService {
     @CacheEvict(value="math:fib", key = "#n")
     public void clearCache(int n) {
         log.info("Clearing Fibonacci cache for n={}", n);
+    }
+
+    @Scheduled(fixedRate = 300_000) // every 5 minutes
+    @CacheEvict(value="math:fib", allEntries = true)
+    public void clearCache() {
+        log.info("Clearing all Fibonacci cache keys");
     }
 
     // Intentional 2^n complexity
